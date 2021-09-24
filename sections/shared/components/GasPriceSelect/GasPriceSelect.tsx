@@ -13,7 +13,7 @@ import NumericInput from 'components/Input/NumericInput';
 
 import InfoIcon from 'assets/svg/app/info.svg';
 
-import { formatCurrency } from 'utils/formatters/number';
+import { formatCurrency, formatNumber } from 'utils/formatters/number';
 
 import { NumericValue } from 'styles/common';
 
@@ -40,10 +40,10 @@ const GasPriceSelect: FC<GasPriceSelectProps> = ({ gasPrices, transactionFee, ..
 	const gasPrice = gasPrices ? gasPrices[gasSpeed] : null;
 
 	const gasPriceItem = hasCustomGasPrice ? (
-		<span data-testid="gas-price">{Number(customGasPrice)}</span>
+		<span data-testid="gas-price">{formatNumber(customGasPrice, { maxDecimals: 1 })}</span>
 	) : (
 		<span data-testid="gas-price">
-			{ESTIMATE_VALUE} {gasPrice}
+			{ESTIMATE_VALUE} {formatNumber(gasPrice ?? 0, { maxDecimals: 1 })}
 		</span>
 	);
 
@@ -59,6 +59,7 @@ const GasPriceSelect: FC<GasPriceSelectProps> = ({ gasPrices, transactionFee, ..
 									<span>
 										{formatCurrency(selectedPriceCurrency.name as CurrencyKey, transactionFee, {
 											sign: selectedPriceCurrency.sign,
+											maxDecimals: 1,
 										})}
 									</span>
 								}
@@ -95,8 +96,10 @@ const GasPriceSelect: FC<GasPriceSelectProps> = ({ gasPrices, transactionFee, ..
 												}}
 												isActive={hasCustomGasPrice ? false : gasSpeed === speed}
 											>
-												<span>{t(`common.summary.gas-prices.${speed}`)}</span>
-												<NumericValue>{gasPrices![speed]}</NumericValue>
+												<span>{t(`common.gas-prices.${speed}`)}</span>
+												<NumericValue>
+													{formatNumber(gasPrices![speed], { maxDecimals: 1 })}
+												</NumericValue>
 											</StyledGasButton>
 										))}
 									</GasSelectContainer>
