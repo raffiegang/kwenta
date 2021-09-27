@@ -1,15 +1,15 @@
-import { FC, useMemo } from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import Wei from '@synthetixio/wei';
 
 import Button from 'components/Button';
 
-import useSynthetixQueries from '@synthetixio/queries';
+// import useSynthetixQueries from '@synthetixio/queries';
 
 import media from 'styles/media';
 
-import GasPriceSummaryItem from 'sections/exchange/FooterCard/TradeSummaryCard/GasPriceSummaryItem';
+// import GasPriceSummaryItem from 'sections/exchange/FooterCard/TradeSummaryCard/GasPriceSummaryItem';
 import {
 	SummaryItem,
 	SummaryItemValue,
@@ -29,21 +29,19 @@ const DeprecatedSynthsFooter: FC<DeprecatedSynthsFooterProps> = ({
 	totalUSDBalance,
 	onSubmit,
 	isRedeeming,
-	transactionFee,
+	// transactionFee,
 }) => {
 	const { t } = useTranslation();
-	const { useEthGasPriceQuery } = useSynthetixQueries();
+	// const { useEthGasPriceQuery } = useSynthetixQueries();
 
-	const ethGasPriceQuery = useEthGasPriceQuery();
-	const gasPrices = useMemo(() => ethGasPriceQuery?.data ?? undefined, [ethGasPriceQuery.data]);
+	// const ethGasPriceQuery = useEthGasPriceQuery();
+	// const gasPrices = useMemo(() => ethGasPriceQuery?.data ?? undefined, [ethGasPriceQuery.data]);
 
 	return (
 		<>
 			<Container>
 				<div></div>
-				<Col>
-					<GasPriceSummaryItem {...{ gasPrices, transactionFee }} />
-				</Col>
+				<Col>{/* <GasPriceSummaryItem {...{ gasPrices, transactionFee }} /> */}</Col>
 				<Col>
 					<SummaryItem>
 						<SummaryItemLabel>{t('dashboard.deprecated.susd-total')}</SummaryItemLabel>
